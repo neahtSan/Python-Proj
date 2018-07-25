@@ -8,3 +8,4 @@ final_v = input("final v(m/s) : ")
 time = input("time(s) : ")
 
 print simple_acceleration_caculator(initial_v, final_v, time) , "metre per second square"
+print "Oh yes"
