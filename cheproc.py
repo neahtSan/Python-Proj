@@ -1,3 +1,6 @@
+# manipulate data frame by using pandas in python (read csv files of interested chemical substance that saved from customs.go.th) 
+# calculate amount of money from import and export and show a percent share of each country that participate with Thailand import and export section.
+
 import pandas as pd 
 files = pd.read_csv("/Users/*/Downloads/che proc/import/Glycerol/Statistic_data_of_July_2021.csv")
 total = sum(files['CIF (BAHT)(Jan - Jul 2021)'])
