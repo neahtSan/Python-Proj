@@ -6,3 +6,6 @@ print(type(x[0]))
 
 a = '123'
 print(a[2])
+
+a = '1'
+print(a[:3])
