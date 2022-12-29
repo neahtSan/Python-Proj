@@ -6,3 +6,4 @@ c = 'nah'
 print(len(a))
 d = [1,2,3,4]
 e = d.sort()
+f = 1234
