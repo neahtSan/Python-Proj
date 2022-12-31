@@ -6,3 +6,5 @@ c = 'nah'
 print(len(a))
 d = [1,2,3,4]
 e = d.sort()
+f = {'a':1}
+print(f.items())
