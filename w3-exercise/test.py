@@ -8,3 +8,4 @@ d = [1,2,3,4]
 e = d.sort()
 f = {'a':1}
 print(f.items())
+print(f.values(), f.keys())
