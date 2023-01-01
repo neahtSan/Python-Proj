@@ -9,3 +9,4 @@ e = d.sort()
 f = {'a':1}
 print(f.items())
 print(f.values(), f.keys())
+print(d[1::])
