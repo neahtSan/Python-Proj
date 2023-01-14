@@ -11,4 +11,4 @@ print(f.items())
 print(f.values(), f.keys())
 print(d[1::])
 f['b'] = 2
-print(f)
+print(len(f))
