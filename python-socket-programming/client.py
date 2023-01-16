@@ -19,7 +19,9 @@ def send(msg):
     client.send(message)
     print(client.recv(2048).decode(FORMAT))
 
-send("Hello World")
-send("This is my first time coding socket programming")
-
+text = 0
+print("Type 'disconnect' to disconnect client from server")
+while text != 'disconnect':
+    text = input("Message: ")
+    send(text)
 send(DISCONNECT_MESSAGE)
