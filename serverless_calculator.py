@@ -3,7 +3,7 @@ import json
 def check_params(body):
     for key, value in body.items():
         if key == 'a' or key == 'b':
-            if type(int(value)) != int:
+            if value.isnumeric() == False:
                 return {'statusCode':400,'body':json.dumps(f'value of {key} is not number')}
         if key == 'op':
             if value not in '+-*/':
@@ -12,6 +12,7 @@ def check_params(body):
             return {'statusCode':400,'body':json.dumps(f'key cannot be empty string')}
         if key not in 'abop':
             return {'statusCode':400,'body':json.dumps(f'wrong param name {key} not a, b or op')}
+    return True
         
 def lambda_operation(body):
     a = int(body['a'])
@@ -30,12 +31,12 @@ def lambda_operation(body):
 
 def lambda_handler(event, context):
 
-    eventString = json.dumps(event)
-    eventDict = json.loads(eventString)
-    body = eventDict['body']
-    check_params(body)
-    response = dict()
-    response['result'] = lambda_operation(body)
+    body = json.loads(event["body"])
+    
+    if check_params(body) != True:
+        return check_params(body)
+    
+    response = {"result" : lambda_operation(body)}
 
     return {
     'statusCode': 200,
