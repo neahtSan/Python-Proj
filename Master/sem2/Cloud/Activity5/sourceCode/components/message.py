@@ -10,6 +10,12 @@ def greet():
     return print(f'{a}{b}{c}{d}{e}{f}{g}')
 
 def help():
-    a = "hi"
+    a = "COMMAND\n"
+    b = "---------------------------\n"
+    c = "view ---> look at files that users have uploaded themselves\n"
+    d = "get [file_name] ---> download one file at a time\n"
+    e = "put [file_name] ---> upload one file at a time\n"
+    f = "quit ---> stop using the myDropbox application\n"
+    g = "---------------------------"
     
-    return a
+    return print(f'{a}{b}{c}{d}{e}{f}{g}')
