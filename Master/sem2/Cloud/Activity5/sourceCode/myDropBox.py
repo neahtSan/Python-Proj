@@ -2,10 +2,12 @@ from components.message import *
 from components.logic import *
 from components.check import *
 
+#show greeting message
 greet()
 
 notQuit = True
 while notQuit:
+    #get input from user
     rawInput = input(">> ")
     command = str()
     
@@ -22,7 +24,7 @@ while notQuit:
         notQuit = False
         
     #handle put & get command
-    if rawInput.split()[0] in ['put', 'get'] and len(rawInput.split()) > 1:
+    if rawInput != '' and rawInput.split()[0] in ['put', 'get'] and len(rawInput.split()) > 1:
         command, fileName  = rawInput.split()
 
     #view

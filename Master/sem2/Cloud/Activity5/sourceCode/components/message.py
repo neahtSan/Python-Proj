@@ -1,4 +1,5 @@
 
+#greet function return string to greeting user when first run the application (take no parameter) 
 def greet():
     a = "Welcome to myDropbox Application made by ThaenSan\n"
     b = "==================================================\n"
@@ -9,6 +10,7 @@ def greet():
     g = "=================================================="
     return print(f'{a}{b}{c}{d}{e}{f}{g}')
 
+#help function return string to tell user what command user can use in myDropbox application (take no parameter) 
 def help():
     a = "COMMAND\n"
     b = "---------------------------\n"
