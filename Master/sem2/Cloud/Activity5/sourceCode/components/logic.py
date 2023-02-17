@@ -9,6 +9,21 @@ gateway = ""
 payload={}
 headers = {'Content-Type': 'application/json'}
 
+def write_image_access(user, password , image):
+    path = "/Activity-6-user"
+    url = f'{gateway}{path}'
+    payload = json.dumps({
+    "user": f'{user}',
+    "password": f'{password}',
+    "image": f'{image}',
+    "order": "image_access"
+    })
+    
+    response = requests.request("POST", url, headers=headers, data=payload)
+    
+    
+    return print(response.text)
+
 #view function return all filename in aws s3 bucket (take no parameter)
 def view():
     #define path and combine with url
@@ -48,7 +63,7 @@ def get(fileName):
     return print(f'download {fileName} at {save_directory} complete!')
 
 #put function return upload file [fileName] from upload directory to aws s3 bucket (take 1 parameter, fileName) 
-def put(fileName):
+def put(fileName, user, password):
     #define path and combine with url
     path = "/Activity-5-upload"
     url = f'{gateway}{path}'
@@ -74,6 +89,10 @@ def put(fileName):
     #send POST
     file = requests.request("POST", url, headers=headers, data=payload)
     
+    #handle table in dynamodb
+    if file.status_code == 200:
+        write_image_access(user, password, fileName)
+    
     return print(file.text)
 
 def newuser(user, password):
@@ -81,10 +100,15 @@ def newuser(user, password):
     url = f'{gateway}{path}'
     payload = json.dumps({
     "user": f'{user}',
-    "password":f'{password}'
+    "password":f'{password}',
+    "image": f'-',
+    "order": "newuser"
     })
     
-    return print(requests.request("POST", url, headers=headers, data=payload).json())
+    response = requests.request("POST", url, headers=headers, data=payload)
+    
+    
+    return print(response.text)
 
 def login(user, password, login_state):
     path = "/Activity-6-user"
@@ -92,7 +116,8 @@ def login(user, password, login_state):
     payload = json.dumps({
     "user": f'{user}',
     "password":f'{password}',
-    "image": f'-'
+    "image": f'-',
+    "order": "login"
     })
     
     response = requests.request("POST", url, headers=headers, data=payload)

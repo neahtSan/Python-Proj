@@ -77,7 +77,7 @@ while notQuit:
                 
             #upload
             if command == "put":
-                put(fileName)
+                put(fileName, username, password)
     except EOFError as e:
        notQuit = False
         
