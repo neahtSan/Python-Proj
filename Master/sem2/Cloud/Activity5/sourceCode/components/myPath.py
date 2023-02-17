@@ -9,11 +9,7 @@ def download_path():
     list_directory = string_directory.split('\\')
     
     #get download directory
-    save_directory = '\\'.join(list_directory[0:-1]+['download'])
-    
-    #if no download directory then create one
-    if not os.path.isdir(save_directory):
-        os.mkdir(save_directory)
+    save_directory = '\\'.join(list_directory[0:-1])
     
     return save_directory
 
@@ -25,11 +21,7 @@ def upload_path():
     list_directory = string_directory.split('\\')
     
     #get upload directory
-    save_directory = '\\'.join(list_directory[0:-1]+['upload'])
-    
-    #if no upload directory then create one
-    if not os.path.isdir(save_directory):
-        os.mkdir(save_directory)
+    save_directory = '\\'.join(list_directory[0:-1])
     
     return save_directory
 
