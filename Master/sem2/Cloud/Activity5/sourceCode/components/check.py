@@ -24,8 +24,6 @@ def check_newuser_format(rawInput):
     check_password = rawInput.split()[3]
     if password != check_password:
         return f'password is not correct'
-    if len(username.split('@')) != 2:
-        return f'username do not have @' 
     return True
 
 def check_login_format(rawInput, login_state):
