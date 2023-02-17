@@ -16,21 +16,39 @@ def write_image_access(user, password , image):
     "user": f'{user}',
     "password": f'{password}',
     "image": f'{image}',
-    "order": "image_access"
+    "order": "write_image_access"
     })
     
     response = requests.request("POST", url, headers=headers, data=payload)
     
+    return print(response.text)
+
+def view_image_access(user, password, all_images):
+    path = "/Activity-6-user"
+    url = f'{gateway}{path}'
+    payload = json.dumps({
+    "user": f'{user}',
+    "password": f'{password}',
+    "image": f'{all_images}',
+    "order": "view_image_access"
+    })
+    
+    response = requests.request("POST", url, headers=headers, data=payload)
     
     return print(response.text)
 
-#view function return all filename in aws s3 bucket (take no parameter)
-def view():
+#view function return all filename in aws s3 bucket 
+def view(user, password):
     #define path and combine with url
     path = "/Activity-5-Lambda" 
     url = f'{gateway}{path}'
     
-    return print(requests.request("GET", url, headers=headers, data=payload).json())
+    list_response = requests.request("GET", url, headers=headers, data=payload).json()
+    
+    if type(list_response) == list:
+        return view_image_access(user, password, list_response) 
+    
+    
 
 #get function return download [fileName] file from aws s3 bucket to download directory (take 1 parameter, fileName) 
 def get(fileName):

@@ -69,7 +69,7 @@ while notQuit:
 
             #view
             if rawInput == "view":
-                view()
+                view(username, password)
                 
             #download
             if command == "get":
