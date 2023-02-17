@@ -75,3 +75,32 @@ def put(fileName):
     file = requests.request("POST", url, headers=headers, data=payload)
     
     return print(file.text)
+
+def newuser(user, password):
+    path = "/Activity-6-user"
+    url = f'{gateway}{path}'
+    payload = json.dumps({
+    "user": f'{user}',
+    "password":f'{password}'
+    })
+    
+    return print(requests.request("POST", url, headers=headers, data=payload).json())
+
+def login(user, password, login_state):
+    path = "/Activity-6-user"
+    url = f'{gateway}{path}'
+    payload = json.dumps({
+    "user": f'{user}',
+    "password":f'{password}',
+    "image": f'-'
+    })
+    
+    response = requests.request("POST", url, headers=headers, data=payload)
+    
+    if response.text == 'OK':
+        login_state = True
+        print(response.text)
+        return login_state
+
+    return print(response.text)
+
