@@ -64,16 +64,22 @@ while notQuit:
         
         if login_state == True:
         #handle put & get command
-            if rawInput != '' and rawInput.split()[0] in ['put', 'get'] and len(rawInput.split()) == 2:
+            if rawInput != '' and rawInput.split()[0] == 'put' and len(rawInput.split()) == 2:
                 command, fileName  = rawInput.split()
+                
+            if rawInput != '' and rawInput.split()[0] == 'get' and len(rawInput.split()) == 3:
+                command, fileName, owner  = rawInput.split()
+                
+            if rawInput != '' and rawInput.split()[0] == 'view':
+                command = 'view'
 
             #view
-            if rawInput == "view":
+            if command == "view":
                 view(username, password)
                 
             #download
             if command == "get":
-                get(fileName)
+                get(fileName, username, password, owner)
                 
             #upload
             if command == "put":

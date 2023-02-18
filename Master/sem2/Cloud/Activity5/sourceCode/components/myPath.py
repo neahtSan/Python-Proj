@@ -2,28 +2,17 @@ import pathlib
 import os
 
 #download_path function return download directory in myDropbox_6570108321 directory if no download directory then will create one (take no parameter) 
+# Return absolute path to "sourceCode" directory
 def download_path():
-    #get path
-    directory = pathlib.Path(__file__).parent.resolve()
-    string_directory = str(directory)
-    list_directory = string_directory.split('\\')
-    
-    #get download directory
-    save_directory = '\\'.join(list_directory[0:-1])
-    
-    return save_directory
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
+    return os.path.join(parent_dir)
 
-#upload_path function return upload directory in myDropbox_6570108321 directory if no upload directory then will create one (take no parameter) 
+# Return absolute path to "sourceCode" directory
 def upload_path():
-    #get path
-    directory = pathlib.Path(__file__).parent.resolve()
-    string_directory = str(directory)
-    list_directory = string_directory.split('\\')
-    
-    #get upload directory
-    save_directory = '\\'.join(list_directory[0:-1])
-    
-    return save_directory
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
+    return os.path.join(parent_dir)
 
 #all_upload_file function return all fileName in upload directory 
 def all_upload_file():

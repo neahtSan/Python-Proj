@@ -39,3 +39,11 @@ def check_logout(login_state):
     else:
         print('OK')
     return login_state
+
+def check_download(list_of_dict, fileName, owner):
+    for i in list_of_dict:
+        if i['image'] == fileName and i['owner'] == owner:
+            return 'access grant'
+        if i['image'] == fileName and i['owner'] != owner:
+            return 'wrong owner name'
+    return False
