@@ -37,16 +37,23 @@ def view_image_access(user, password, all_images):
     
     return print(response.text)
 
-#view function return all filename in aws s3 bucket 
-def view(user, password):
-    #define path and combine with url
+def get_s3_all_file():
     path = "/Activity-5-Lambda" 
     url = f'{gateway}{path}'
     
     list_response = requests.request("GET", url, headers=headers, data=payload).json()
     
+    return list_response
+
+#view function return all filename in aws s3 bucket 
+def view(user, password):
+    
+    list_response = get_s3_all_file()
+    
     if type(list_response) == list:
-        return view_image_access(user, password, list_response) 
+        return view_image_access(user, password, list_response)
+    
+
     
     
 
@@ -145,5 +152,24 @@ def login(user, password, login_state):
         print(response.text)
         return login_state
 
+    return print(response.text)
+
+def share(image, shared_user, user, password):
+    path = "/Activity-6-user"
+    url = f'{gateway}{path}'
+    
+    s3_file = get_s3_all_file()
+    
+    payload = json.dumps({
+    "user": f'{user}',
+    "password":f'{password}',
+    "image": f'{image}',
+    "all_image":f'{s3_file}',
+    "shared_user":f'{shared_user}',
+    "order": "share"
+    })
+    
+    response = requests.request("POST", url, headers=headers, data=payload)
+    
     return print(response.text)
 

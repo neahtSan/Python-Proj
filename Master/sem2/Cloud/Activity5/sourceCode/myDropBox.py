@@ -78,6 +78,13 @@ while notQuit:
             #upload
             if command == "put":
                 put(fileName, username, password)
+                
+            #share
+            if rawInput != '' and rawInput.split()[0] == 'share' and len(rawInput.split()) == 3:
+                command, fileName, shared_user = rawInput.split()
+                share(fileName, shared_user, username, password)
+            
+            
     except EOFError as e:
        notQuit = False
         
