@@ -17,7 +17,7 @@ def write_image_access(user, password , image, format_date, size):
     payload = json.dumps({
     "user": f'{user}',
     "password": f'{password}',
-    "image": f'{image}',
+    "image": f'{user}*{image}',
     "lastModifiedDate": f'{format_date}',
     "size": f'{size}',
     "order": "write_image_access"
@@ -57,7 +57,7 @@ def view(user, password):
     if type(list_response) == list:
         return print(view_image_access(user, password, list_response).text)
     
-    return print(view_image_access(user, password, list_response).text)
+    return view_image_access(user, password, list_response).text
     
 
     
@@ -76,7 +76,7 @@ def get(fileName, user, password, owner):
         path = "/Activity-5-download" 
         url = f'{gateway}{path}'
         payload = json.dumps({
-        "fileName": f'{fileName}'
+        "fileName": f'{owner}*{fileName}'
         })
         
         #send POST
@@ -125,7 +125,7 @@ def put(fileName, user, password):
     
     #define payload
     payload = json.dumps({
-        "fileName": f'{fileName}',
+        "fileName": f'{user}*{fileName}',
         "rawText": json.loads(json.dumps(body, default=str))
     })
     
@@ -190,7 +190,7 @@ def share(image, shared_user, user, password):
     payload = json.dumps({
     "user": f'{user}',
     "password":f'{password}',
-    "image": f'{image}',
+    "image": f'{user}*{image}',
     "all_image":f'{s3_file}',
     "shared_user":f'{shared_user}',
     "order": "share"
