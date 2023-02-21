@@ -16,6 +16,7 @@ def check_file(fileName):
         return True
     return False
 
+#check newuser format that correct or not
 def check_newuser_format(rawInput):
     if len(rawInput.split()) != 4:
         return f'wrong format for crate user please input >> newuser [username] [password] [password]'
@@ -26,6 +27,7 @@ def check_newuser_format(rawInput):
         return f'password is not correct'
     return True
 
+#check login format that correct or not
 def check_login_format(rawInput, login_state):
     if len(rawInput.split()) != 3:
         return f'wrong format for login please input >> login [username] [password]'
@@ -33,6 +35,7 @@ def check_login_format(rawInput, login_state):
         return f'User already login please logout first'
     return True
 
+#check login before logout
 def check_logout(login_state):
     if login_state == False:
         return f'Please login before logout'
@@ -40,6 +43,7 @@ def check_logout(login_state):
         print('OK')
     return login_state
 
+#check download file 
 def check_download(list_of_dict, fileName, owner):
     for i in list_of_dict:
         if i['image'] == fileName and i['owner'] == owner:

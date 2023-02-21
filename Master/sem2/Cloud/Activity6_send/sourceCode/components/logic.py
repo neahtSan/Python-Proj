@@ -11,6 +11,7 @@ gateway = ""
 payload={}
 headers = {'Content-Type': 'application/json'}
 
+# Write login user file access in dynamodb table
 def write_image_access(user, password , image, format_date, size):
     path = "/Activity-6-user"
     url = f'{gateway}{path}'
@@ -27,6 +28,7 @@ def write_image_access(user, password , image, format_date, size):
     
     return print(response.text)
 
+# View login user all file access in dynamodb table
 def view_image_access(user, password, all_images):
     path = "/Activity-6-user"
     url = f'{gateway}{path}'
@@ -40,7 +42,7 @@ def view_image_access(user, password, all_images):
     response = requests.request("POST", url, headers=headers, data=payload)
     
     return response
-
+# Get AWS S3 All file
 def get_s3_all_file():
     path = "/Activity-5-Lambda" 
     url = f'{gateway}{path}'
@@ -49,7 +51,7 @@ def get_s3_all_file():
     
     return list_response
 
-#view function return all filename in aws s3 bucket 
+# View 
 def view(user, password):
 
     list_response = get_s3_all_file()
@@ -63,12 +65,13 @@ def view(user, password):
     
     
 
-#get function return download [fileName] file from aws s3 bucket to download directory (take 1 parameter, fileName) 
+# Get file from AWS S3 (download) that login user have access to 
 def get(fileName, user, password, owner):
     #check image access first
     all_file = get_s3_all_file()
     response = view_image_access(user, password, all_file)
     
+    #change str list to list
     list_response = ast.literal_eval(response.json())
     
     if check_download(list_response, fileName, owner) == 'access grant':
@@ -105,7 +108,7 @@ def get(fileName, user, password, owner):
         return print(f'Wrong owner name: {owner}')
     
 
-#put function return upload file [fileName] from upload directory to aws s3 bucket (take 1 parameter, fileName) 
+# Put file to AWS S3 (upload)  
 def put(fileName, user, password):
     #define path and combine with url
     path = "/Activity-5-upload"
@@ -147,6 +150,7 @@ def put(fileName, user, password):
     
     return print(file.text)
 
+# Create newuser in dynamodb table if user not exist
 def newuser(user, password):
     path = "/Activity-6-user"
     url = f'{gateway}{path}'
@@ -162,6 +166,7 @@ def newuser(user, password):
     
     return print(response.text)
 
+# login the user if user exist and correct password
 def login(user, password, login_state):
     path = "/Activity-6-user"
     url = f'{gateway}{path}'
@@ -181,6 +186,7 @@ def login(user, password, login_state):
 
     return print(response.text)
 
+# Share a file to exist user in dynamodb table if user is a owner 
 def share(image, shared_user, user, password):
     path = "/Activity-6-user"
     url = f'{gateway}{path}'

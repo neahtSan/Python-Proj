@@ -185,7 +185,7 @@ need to be in `sourceCode directory` inside work project before upload
 
 
 
-## API Request & Response
+## HOWTO for API Request & Response
 
 #### Write login user file access in dynamodb table
 ```http
